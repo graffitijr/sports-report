@@ -104,6 +104,7 @@
         let MainStory = await GetContent();
         MainStory = MainStory[0];
 
+        console.log(MainStory);
         FeaturedImage.src = MainStory.image;
         FeaturedTitle.textContent = MainStory.title;
         Writer.textContent = MainStory.writer;
