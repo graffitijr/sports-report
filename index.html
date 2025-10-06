@@ -16,11 +16,11 @@
     const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
 
     document.addEventListener("DOMContentLoaded", () => {
-        GetContent()
+        GetContent();
     })
 
     async function GetContent() {
-        let res = await fetch(BaseWorkerLink + "/get-content");
+        const res = await fetch(BaseWorkerLink + "/get-content");
 
         if (!res.ok) {
             alert("no response from server");
@@ -29,8 +29,8 @@
             alert("response from server");
         }
 
-        recievedContent = await res.json();
-        alert(recievedContent);
+        let Content = await res.json();
+        alert(Content);
     }
 
 </script>
