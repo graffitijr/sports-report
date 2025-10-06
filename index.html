@@ -100,8 +100,9 @@
         return Content;
     }
 
-    function RenderFeaturedStory() {
-        let MainStory = GetContent()[0];
+    async function RenderFeaturedStory() {
+        let MainStory = await GetContent();
+        MainStory = MainStory[0];
 
         FeaturedImage.src = MainStory.image;
         FeaturedTitle.textContent = MainStory.title;
