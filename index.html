@@ -18,10 +18,17 @@
     document.addEventListener("DOMContentLoaded", () => {
         GetContent()
     })
-    
+
     async function GetContent() {
         let res = await fetch(BaseWorkerLink + "/get-content");
-        
+
+        if (!res.ok) {
+            alert("no response from server");
+        }
+        if (res.status === 200) {
+            alert("response from server");
+        }
+
         recievedContent = await res.json();
         alert(recievedContent);
     }
