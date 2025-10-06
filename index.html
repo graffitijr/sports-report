@@ -4,19 +4,84 @@
     <meta charset="UTF-8">
     <title>Homepage</title>
     <style>
-
+        body, html {
+            background-color: #181a1b;
+        }
+        #main-container {
+            height: 98vh;
+            display: grid;
+            grid-template-areas:
+            "header header"
+            "main sidebar";
+            grid-template-columns: 1fr 20vw;
+            grid-template-rows: 18vh 1fr;
+        }
+        #header {
+            grid-area: header;
+            border: 1px solid #FFF;
+        }
+        #sidebar {
+            grid-area: sidebar;
+            border: 1px solid #FFF;
+        }
+        #main {
+            grid-area: main;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #featured-image {
+            margin-top: 2vh;
+            width: 70vw;
+            height: 60vh;
+            object-fit: contain;
+            border: 1px solid white;
+        }
+        #button-featured-image {
+            background: none;
+            border: none;
+        }
+        #featured-title {
+            margin: 1vh;
+            color: #D3DAD9;
+            font: 5vh "Segoe UI";
+            font-weight: bold;
+        }
+        #writer {
+            margin: 1vh;
+            color: #D3DAD9;
+            font: 2vh "Segoe UI";
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-<p>Homepage</p>
+<div id="main-container">
+    <div id="header">
+
+    </div>
+    <div id="sidebar">
+
+    </div>
+    <div id="main">
+        <button id="button-featured-image"><img id="featured-image" src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8="></button>
+        <h1 id="featured-title">No featured story</h1>
+        <p id="writer">Name goes here</p>
+    </div>
+</div>
 
 <script>
+    //elements
+    const FeaturedImage = document.getElementById('featured-image');
+    const FeaturedTitle = document.getElementById('featured-title');
+    const Writer = document.getElementById('writer');
+
     //front end template - made my NOAH RICHARDS
 
     const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
 
     document.addEventListener("DOMContentLoaded", () => {
-        GetContent();
+        RenderFeaturedStory()
     })
 
     async function GetContent() {
@@ -31,6 +96,17 @@
 
         let Content = await res.json();
         alert(Content);
+
+        return Content;
+    }
+
+    function RenderFeaturedStory(){
+        let MainStory = GetContent()[0];
+
+        FeaturedImage.src = MainStory.image;
+        FeaturedTitle.textContent = MainStory.title;
+        Writer.textContent = MainStory.writer;
+
     }
 
 </script>
