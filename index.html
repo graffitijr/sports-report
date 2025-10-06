@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Homepage</title>
     <style>
 
     </style>
@@ -11,6 +11,20 @@
 
 
 <script>
+    //front end template - made my NOAH RICHARDS
+
+    const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
+
+    document.addEventListener("DOMContentLoaded", () => {
+        GetContent()
+    })
+    
+    async function GetContent() {
+        let res = await fetch(BaseWorkerLink + "/get-content");
+        
+        recievedContent = await res.json();
+        alert(recievedContent);
+    }
 
 </script>
 </body>
