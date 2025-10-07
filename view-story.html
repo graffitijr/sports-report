@@ -46,6 +46,14 @@
             height: 60vh;
             object-fit: contain;
         }
+        #writer {
+            font: 700 1.5vh "Segoe UI";
+            color: #D3DAD9;
+            width: 50vw;
+            height: 10vh;
+            text-align: center;
+            margin: -2vh;
+        }
     </style>
 </head>
 <body>
@@ -53,6 +61,7 @@
 <div id="main-text-container">
     <img id="main-image" src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=">
     <h1 id="label-story-title">Story Title</h1>
+    <p id="writer">Writer Writer</p>
     <p id="label-story-body">Story body paragraph</p>
 </div>
 
@@ -62,6 +71,7 @@
     const mainImage = document.getElementById('main-image');
     const mainTitle = document.getElementById('label-story-title');
     const mainText = document.getElementById('label-story-body');
+    const mainWriter = document.getElementById('writer');
 
     //front end template - made my NOAH RICHARDS
 
@@ -92,6 +102,7 @@
                 mainImage.src = story.image;
                 mainTitle.textContent = story.title;
                 mainText.textContent = story.text;
+                mainWriter.textContent = story.writer;
             }
         })
     }
