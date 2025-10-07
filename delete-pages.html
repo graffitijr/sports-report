@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delete pages</title>
+    <style>
+        body, html {
+            background-color: black;
+        }
+        #main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 95vw;
+            height: 95vh;
+        }
+        .text-class {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="main-container">
+    <div id="list-stories-container">
+
+    </div>
+    <h1 class="text-class">Delete Stories</h1>
+</div>
+<script>
+    const StoryContainer = document.getElementById('list-stories-container');
+
+    document.addEventListener('DOMContentLoaded', () => {
+        RenderStories();
+    })
+
+    async function RenderStories() {
+        let stories = GetContent()
+
+        stories.forEach(story => {
+            const text = document.createElement("p");
+            text.textContent = story.title;
+
+            StoryContainer.append(text);
+        })
+
+    }
+
+    async function GetContent() {
+        const res = await fetch(BaseWorkerLink + "/get-content");
+
+        if (!res.ok) {
+            alert("no response from server");
+        }
+
+        return await res.json();
+    }
+</script>
+</body>
+</html>
