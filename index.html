@@ -21,8 +21,11 @@
             border: 1px solid #FFF;
         }
         #sidebar {
+            display: flex;
             grid-area: sidebar;
             border: 1px solid #FFF;
+            flex-direction: column;
+            align-items: center;
         }
         #main {
             grid-area: main;
@@ -36,6 +39,7 @@
             height: 60vh;
             object-fit: contain;
             border: 1px solid white;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
         #button-featured-image {
             background: none;
@@ -53,6 +57,65 @@
             font: 2vh "Segoe UI";
             font-weight: bold;
         }
+        #label-new {
+            color: #D3DAD9;
+            font: 4vh "Segoe UI";
+            font-weight: 700;
+        }
+        .button-container {
+            width: 18vw;
+            height: 20vh;
+            border: 1px solid white;
+            margin-bottom: 3vh;
+            position: relative;
+        }
+        .new-buttons {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #136f43;
+            border-radius: 1.5vw;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            z-index: 1;
+        }
+        .images {
+            border: 1px solid white;
+            width: 30%;
+            height: 80%;
+            position: absolute;
+            top: 2vh;
+            left: .5vw;
+            z-index: 2;
+            object-fit: contain;
+            pointer-events: none;
+        }
+        .new-title {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 6.5vw;
+            border: 1px solid white;
+            width: 57%;
+            height: 60%;
+            align-items: center;
+            justify-content: center;
+            color: #D3DAD9;
+            font: 3vh "Segoe UI";
+            font-weight: 700;
+        }
+        .new-writer {
+            position: absolute;
+            top: 13vh;
+            left: 6.5vw;
+            border: 1px solid white;
+            width: 57%;
+            height: 15%;
+            text-align: center;
+            color: #D3DAD9;
+            font: 2vh "Segoe UI";
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
@@ -61,7 +124,21 @@
 
     </div>
     <div id="sidebar">
-
+        <h1 id="label-new">New</h1>
+        <div id="new-container">
+            <div class="button-container">
+                <button class="new-buttons"></button>
+                <img class="images" src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=">
+                <h1 class="new-title">New</h1>
+                <p class="new-writer">Noah Richards</p>
+            </div>
+            <div class="button-container">
+                <button class="new-buttons"></button>
+            </div>
+            <div class="button-container">
+                <button class="new-buttons"></button>
+            </div>
+        </div>
     </div>
     <div id="main">
         <button id="button-featured-image"><img id="featured-image" src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8="></button>
@@ -72,6 +149,7 @@
 
 <script>
     //elements
+    const FeaturedButton = document.getElementById("button-featured-image")
     const FeaturedImage = document.getElementById('featured-image');
     const FeaturedTitle = document.getElementById('featured-title');
     const Writer = document.getElementById('writer');
@@ -82,6 +160,10 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         RenderFeaturedStory()
+    })
+
+    FeaturedButton.addEventListener("click", () => {
+
     })
 
     async function GetContent() {
@@ -108,6 +190,42 @@
         FeaturedImage.src = MainStory.image;
         FeaturedTitle.textContent = MainStory.title;
         Writer.textContent = MainStory.writer;
+
+    }
+    async function RenderNewStories() {
+        let Stories = await GetContent();
+        let NewestStories = Stories.slice(0, 2);
+
+        const container = document.getElementById("new-container");
+        container.innerHTML = "";
+
+
+        NewestStories.forEach((element) => {
+            let buttonContainer = document.createElement("div");
+            buttonContainer.className = "button-container";
+
+            let button = document.createElement("button");
+            button.className = "new-buttons";
+
+            let image = document.createElement("img");
+            image.className = "images";
+            image.src = element.image;
+
+            let title = document.createElement("h1");
+            title.className = "new-title";
+            title.textContent = element.title;
+
+            let writer = document.createElement("p");
+            writer.className = "new-writer";
+            writer.textContent = element.writer;
+
+            buttonContainer.appendChild(button);
+            buttonContainer.appendChild(image);
+            buttonContainer.appendChild(title);
+            buttonContainer.appendChild(writer);
+
+            container.appendChild(buttonContainer);
+        })
 
     }
 
