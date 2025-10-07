@@ -39,11 +39,13 @@
     const image = document.getElementById("image")
 
     async function Post() {
+        let name = window.location.searchParams.get("name")
+
         let res = await fetch(BaseWorkerLink + "/post-story", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             credentials: "include",
-            body: JSON.stringify({"title": title.value, "writer":writer.value, "text":body.value, "image":image.value})
+            body: JSON.stringify([name, {"title": title.value, "writer":writer.value, "text":body.value, "image":image.value}])
         })
     }
 </script>
