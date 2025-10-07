@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <style>
+        body, html {
+            background-color: #181a1b;
+        }
+        #main-container {
+            height: 98vh;
+            display: grid;
+            grid-template-areas:
+            "header header"
+            "main sidebar";
+            grid-template-columns: 1fr 20vw;
+            grid-template-rows: 18vh 1fr;
+        }
+        #header {
+            grid-area: header;
+            border: 1px solid #FFF;
+        }
+        #sidebar {
+            display: flex;
+            grid-area: sidebar;
+            border: 1px solid #FFF;
+            flex-direction: column;
+            align-items: center;
+        }
+        #main {
+            grid-area: main;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #featured-image {
+            margin-top: 2vh;
+            width: 70vw;
+            height: 60vh;
+            object-fit: contain;
+        }
+        #featured-image:hover {
+            opacity: 70%;
+        }
+        #button-featured-image {
+            background: none;
+            border: none;
+        }
+        #featured-title {
+            margin: 1vh;
+            color: #D3DAD9;
+            font: 5vh "Segoe UI";
+            font-weight: bold;
+        }
+        #writer {
+            margin: 1vh;
+            color: #D3DAD9;
+            font: 2vh "Segoe UI";
+            font-weight: bold;
+        }
+        #label-new {
+            color: #D3DAD9;
+            font: 4vh "Segoe UI";
+            font-weight: 700;
+        }
+        .button-container {
+            width: 18vw;
+            height: 20vh;
+            margin-bottom: 3vh;
+            position: relative;
+        }
+        .new-buttons {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #136f43;
+            border-radius: 1.5vw;
+            border: none;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            z-index: 1;
+        }
+        .new-buttons:hover {
+            opacity: 70%;
+        }
+        .images {
+            width: 30%;
+            height: 80%;
+            position: absolute;
+            top: 2vh;
+            left: .5vw;
+            z-index: 2;
+            object-fit: contain;
+            pointer-events: none;
+        }
+        .new-title {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 6.5vw;
+        //border: 1px solid white;
+            width: 57%;
+            height: 60%;
+            align-items: center;
+            justify-content: center;
+            color: #D3DAD9;
+            font: 3vh "Segoe UI";
+            font-weight: 700;
+            pointer-events: none;
+        }
+        .new-writer {
+            position: absolute;
+            top: 13vh;
+            left: 6.5vw;
+        //border: 1px solid white;
+            width: 57%;
+            height: 15%;
+            text-align: center;
+            color: #D3DAD9;
+            font: 2vh "Segoe UI";
+            font-weight: 700;
+            pointer-events: none;
+        }
+        #main-reset-button-icon {
+            height: 10vh;
+            top: 4.5vh;
+            left: 2vw;
+            position: absolute;
+
+        }
+        #main-reset-button {
+            background: none;
+            border: none;
+        }
+        #input-search {
+            position: absolute;
+            width: 15vw;
+            height: 3vh;
+            top: 8vh;
+            right: 6.5vw;
+        }
+        #search-result-link-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 98vw;
+            height: 96vh;
+        }
+        .links {
+            color: #D3DAD9;
+            font: 2vh "Segoe UI";
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<button id="main-reset-button" onclick="RefreshPage()"><img id="main-reset-button-icon" src="IMG_1614.PNG"></button>
+<nav id="search-result-link-container">
+
+</nav>
+
+<script>
+    //elements
+
+
+    //front end template - made my NOAH RICHARDS
+
+    const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
+
+    document.addEventListener("DOMContentLoaded", () => {
+        RenderResults()
+    })
+    //handle searching
+
+    function RefreshPage () {
+        window.location.href = "index.html"
+    }
+
+    const container = document.getElementById("search-result-link-container");
+
+    function RenderResults () {
+        let results = localStorage.getItem("search-results");
+        results = JSON.parse(results);
+
+        if (results == null) {
+            alert("No results found.");
+            return
+        }
+
+        container.innerHTML = "";
+
+        results.forEach((result) => {
+            let link = document.createElement("a");
+            link.href = `https://fhcsports.site/view-story?title=${encodeURIComponent(result)}`;
+            link.textContent = result;
+            link.className = "links";
+
+            container.appendChild(link);
+        })
+    }
+
+</script>
+</body>
+</html>
