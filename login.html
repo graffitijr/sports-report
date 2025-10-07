@@ -34,8 +34,13 @@
         let res = await fetch(BaseWorkerLink + "/login", {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify([username.value, password.value])
+            body: JSON.stringify([username.value, password.value]),
+            credentials: "include"
         });
+        let text = await res.text();
+        if (text === "login success"){
+            window.location.href = "backend.html"
+        }
     }
 </script>
 </body>
