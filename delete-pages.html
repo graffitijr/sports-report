@@ -36,7 +36,7 @@
     })
 
     async function RenderStories() {
-        let stories = GetContent()
+        let stories = await GetContent()
 
         stories.forEach(story => {
             const text = document.createElement("p");
