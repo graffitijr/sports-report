@@ -202,8 +202,15 @@
     }
 
     FeaturedButton.addEventListener("click", () => {
-
+        ViewStory(FeaturedTitle.textContent)
     })
+
+    //view story
+
+    function ViewStory(title) {
+        window.location.href = `https://fhcsports.site/view-story?title=${encodeURIComponent(title)}`;
+    }
+
     function RefreshPage () {
         window.location.reload()
     }
