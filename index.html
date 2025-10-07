@@ -38,8 +38,9 @@
             width: 70vw;
             height: 60vh;
             object-fit: contain;
-            border: 1px solid white;
-            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+        #featured-image:hover {
+            opacity: 70%;
         }
         #button-featured-image {
             background: none;
@@ -65,7 +66,6 @@
         .button-container {
             width: 18vw;
             height: 20vh;
-            border: 1px solid white;
             margin-bottom: 3vh;
             position: relative;
         }
@@ -79,8 +79,10 @@
             box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
             z-index: 1;
         }
+        .new-buttons:hover {
+            opacity: 70%;
+        }
         .images {
-            border: 1px solid white;
             width: 30%;
             height: 80%;
             position: absolute;
@@ -95,7 +97,7 @@
             position: absolute;
             top: 0;
             left: 6.5vw;
-            border: 1px solid white;
+            //border: 1px solid white;
             width: 57%;
             height: 60%;
             align-items: center;
@@ -103,18 +105,20 @@
             color: #D3DAD9;
             font: 3vh "Segoe UI";
             font-weight: 700;
+            pointer-events: none;
         }
         .new-writer {
             position: absolute;
             top: 13vh;
             left: 6.5vw;
-            border: 1px solid white;
+            //border: 1px solid white;
             width: 57%;
             height: 15%;
             text-align: center;
             color: #D3DAD9;
             font: 2vh "Segoe UI";
             font-weight: 700;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -173,12 +177,8 @@
         if (!res.ok) {
             alert("no response from server");
         }
-        if (res.status === 200) {
-            alert("response from server");
-        }
 
         let Content = await res.json();
-        alert(Content);
 
         return Content;
     }
@@ -186,8 +186,7 @@
     async function RenderFeaturedStory() {
         let MainStory = await GetContent();
         MainStory = MainStory[0];
-
-        console.log(MainStory);
+        
         FeaturedImage.src = MainStory.image;
         FeaturedTitle.textContent = MainStory.title;
         Writer.textContent = MainStory.writer;
@@ -195,7 +194,7 @@
     }
     async function RenderNewStories() {
         let Stories = await GetContent();
-        let NewestStories = Stories.slice(0, 3);
+        let NewestStories = Stories.slice(0, 2);
 
         const container = document.getElementById("new-container");
         container.innerHTML = "";
