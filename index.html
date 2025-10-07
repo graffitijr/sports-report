@@ -195,7 +195,7 @@
     }
     async function RenderNewStories() {
         let Stories = await GetContent();
-        let NewestStories = Stories.slice(0, 2);
+        let NewestStories = Stories.slice(0, 3);
 
         const container = document.getElementById("new-container");
         container.innerHTML = "";
