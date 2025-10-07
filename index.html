@@ -120,28 +120,36 @@
             font-weight: 700;
             pointer-events: none;
         }
+        #main-reset-button-icon {
+            height: 10vh;
+            top: 4.5vh;
+            left: 2vw;
+            position: absolute;
+
+        }
+        #main-reset-button {
+            background: none;
+            border: none;
+        }
+        #input-search {
+            position: absolute;
+            width: 15vw;
+            height: 3vh;
+            top: 8vh;
+            right: 6.5vw;
+        }
     </style>
 </head>
 <body>
 <div id="main-container">
     <div id="header">
-
+        <button id="main-reset-button" onclick="RefreshPage()"><img id="main-reset-button-icon" src="IMG_1614.PNG"></button>
+        <input type="text" id="input-search">
     </div>
     <div id="sidebar">
         <h1 id="label-new">New</h1>
         <div id="new-container">
-            <div class="button-container">
-                <button class="new-buttons"></button>
-                <img class="images" src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=">
-                <h1 class="new-title">New</h1>
-                <p class="new-writer">Noah Richards</p>
-            </div>
-            <div class="button-container">
-                <button class="new-buttons"></button>
-            </div>
-            <div class="button-container">
-                <button class="new-buttons"></button>
-            </div>
+
         </div>
     </div>
     <div id="main">
@@ -158,6 +166,8 @@
     const FeaturedTitle = document.getElementById('featured-title');
     const Writer = document.getElementById('writer');
 
+    const SearchBar = document.getElementById('input-search');
+
     //front end template - made my NOAH RICHARDS
 
     const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
@@ -167,9 +177,37 @@
         RenderNewStories()
     })
 
+    //handle searching
+
+    SearchBar.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+            Search(SearchBar.value);
+        }
+    })
+    async function Search(search_term) {
+        let content = await GetContent()
+
+        let foundStories = []
+
+        content.forEach((item) => {
+            if (item.title.toLowerCase().includes(search_term.toLowerCase())) {
+                foundStories.unshift(item.title)
+            }
+        })
+        displaySearchResults(foundStories);
+    }
+    function DisplaySearchResults(results) {
+        localStorage.setItem("search_results", results);
+        window.location.href = "search-results.html";
+    }
+
     FeaturedButton.addEventListener("click", () => {
 
     })
+    function RefreshPage () {
+        window.location.reload()
+    }
+
 
     async function GetContent() {
         const res = await fetch(BaseWorkerLink + "/get-content");
@@ -186,7 +224,7 @@
     async function RenderFeaturedStory() {
         let MainStory = await GetContent();
         MainStory = MainStory[0];
-        
+
         FeaturedImage.src = MainStory.image;
         FeaturedTitle.textContent = MainStory.title;
         Writer.textContent = MainStory.writer;
