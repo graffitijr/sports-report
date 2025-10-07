@@ -39,7 +39,7 @@
     const image = document.getElementById("image")
 
     async function Post() {
-        let name = window.location.searchParams.get("name")
+        let name = new URL(window.location.href).searchParams.get("name");
 
         let res = await fetch(BaseWorkerLink + "/post-story", {
             method: "POST",
