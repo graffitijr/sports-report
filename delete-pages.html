@@ -53,9 +53,11 @@
             alert("error")
         }
         let text = await res.text();
-        if (text === "successfully removed") {
-            alert("successfully removed")
+        if (text === "attempted to remove") {
+            alert("attempted to remove")
         }
+        InputChoice.value = "";
+        window.location.reload();
     }
 
     async function RenderStories() {
