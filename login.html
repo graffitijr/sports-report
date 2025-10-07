@@ -37,9 +37,16 @@
             body: JSON.stringify([username.value, password.value]),
             credentials: "include"
         });
+        if (!res.ok) {
+            alert("no server response")
+        }
         let text = await res.text();
         if (text === "login success"){
+            alert("login success")
             window.location.href = `https://fhcsports.site/backend?name=${username.value}`;
+        }
+        if (text === "invalid login") {
+            alert("invalid login")
         }
     }
 </script>
