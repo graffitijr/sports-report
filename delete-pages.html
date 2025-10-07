@@ -39,6 +39,7 @@
         stories.forEach(story => {
             const text = document.createElement("p");
             text.textContent = story.title;
+            text.className = "text-class";
 
             StoryContainer.append(text);
         })
