@@ -197,7 +197,7 @@
         DisplaySearchResults(foundStories);
     }
     function DisplaySearchResults(results) {
-        localStorage.setItem("search_results", results);
+        localStorage.setItem("search-results", JSON.stringify(results));
         window.location.href = "search-results.html";
     }
 
