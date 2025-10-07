@@ -23,7 +23,7 @@
 </head>
 <body>
 <div id="main-container">
-    <a href="delete-pages.html">Remove Stories Link</a>
+    <a onclick="GoToDelete()">Remove Stories Link</a>
     <input class="inputs" id="title" type="text" placeholder="Title">
     <input class="inputs" id="writer" type="text" placeholder="Writer">
     <textarea id="body" placeholder="body"></textarea>
@@ -53,6 +53,11 @@
         }
         let text = await res.text()
         alert(text)
+    }
+
+    function GoToDelete() {
+        let name = new URL(window.location.href).searchParams.get("name");
+        window.location.href = "https://fhcsports.site/delete-pages?name=" + name;
     }
 </script>
 </body>
