@@ -251,6 +251,9 @@
 
             let button = document.createElement("button");
             button.className = "new-buttons";
+            button.addEventListener("click", (e) => {
+                ViewStory(element.title)
+            })
 
             let image = document.createElement("img");
             image.className = "images";
