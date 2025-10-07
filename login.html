@@ -39,7 +39,7 @@
         });
         let text = await res.text();
         if (text === "login success"){
-            window.location.href = "backend.html"
+            window.location.href = `https://fhcsports.site/backend?name=${username.value}`;
         }
     }
 </script>
