@@ -21,19 +21,42 @@
 </head>
 <body>
 <div id="main-container">
+    <h1 class="text-class">Delete Stories</h1>
     <div id="list-stories-container">
 
     </div>
-    <h1 class="text-class">Delete Stories</h1>
+    <input type="text" id="choice" placeholder="Enter story to delete">
+    <button onclick="DeleteStory()" id="delete-stories">Delete Stories</button>
 </div>
 <script>
     const StoryContainer = document.getElementById('list-stories-container');
+    const InputChoice = document.getElementById('choice');
 
     const BaseWorkerLink = "https://worker.fhcsports.site";
 
     document.addEventListener('DOMContentLoaded', () => {
         RenderStories();
     })
+
+    async function DeleteStory() {
+        let name = new URL(window.location.href).searchParams.get("name");
+
+        let StoryToDelete = InputChoice.value;
+
+        let res = await fetch(BaseWorkerLink + "/remove-story", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include",
+            body: JSON.stringify([name, StoryToDelete])
+        })
+        if (!res.ok) {
+            alert("error")
+        }
+        let text = await res.text();
+        if (text === "successfully removed") {
+            alert("successfully removed")
+        }
+    }
 
     async function RenderStories() {
         let stories = await GetContent()
