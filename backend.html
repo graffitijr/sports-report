@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Backend</title>
+    <style>
+        #main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 95vh;
+            width: 95vw;
+        }
+        .inputs {
+            width: 30vw;
+            height: 5vh;
+        }
+        #body {
+            width: 50vw;
+            height: 60vh;
+        }
+    </style>
+</head>
+<body>
+<div id="main-container">
+    <input class="inputs" id="title" type="text" placeholder="Title">
+    <input class="inputs" id="writer" type="text" placeholder="Writer">
+    <textarea id="body" placeholder="body"></textarea>
+    <input class="inputs" id="image" type="text" placeholder="Image Link">
+    <button id="post" onclick="Post()">Post</button>
+</div>
+<script>
+
+    const BaseWorkerLink = "https://worker.fhcsports.site"
+
+    const title = document.getElementById("title")
+    const writer = document.getElementById("writer")
+    const body = document.getElementById("body")
+    const image = document.getElementById("image")
+
+    async function Post() {
+        let res = await fetch(BaseWorkerLink + "/post-story", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include",
+            body: JSON.stringify({"title": title.value, "writer":writer.value, "text":body.value, "image":image.value})
+        })
+    }
+</script>
+</body>
+</html>
