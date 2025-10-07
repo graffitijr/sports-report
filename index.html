@@ -17,6 +17,8 @@
             grid-template-rows: 18vh 1fr;
         }
         #header {
+            display: flex;
+            align-items: center;
             grid-area: header;
             border: 1px solid #FFF;
         }
@@ -138,12 +140,19 @@
             top: 8vh;
             right: 6.5vw;
         }
+        #homescreen-text {
+            position: absolute;
+            font: 700 5vh "Segoe UI";
+            color: #D3DAD9;
+            left: 30vw;
+        }
     </style>
 </head>
 <body>
 <div id="main-container">
     <div id="header">
         <button id="main-reset-button" onclick="RefreshPage()"><img id="main-reset-button-icon" src="IMG_1614.PNG"></button>
+        <h1 id="homescreen-text">The home of FHC athletics</h1>
         <input type="text" id="input-search">
     </div>
     <div id="sidebar">
@@ -157,6 +166,7 @@
         <h1 id="featured-title">No featured story</h1>
         <p id="writer">Name goes here</p>
     </div>
+    <a href="https://fhcsports.site/login.html" style="color: white">Login</a>
 </div>
 
 <script>
