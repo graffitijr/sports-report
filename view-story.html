@@ -88,7 +88,7 @@
             return;
         }
         content.forEach(story => {
-            if (story.title === GetRequestedStory) {
+            if (story.title === GetRequestedStory()) {
                 mainImage.src = story.image;
                 mainTitle.textContent = story.title;
                 mainText.textContent = story.text;
