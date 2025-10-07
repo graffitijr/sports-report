@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Story</title>
+    <style>
+        body, html {
+            background-color: #181a1b;
+        }
+
+        #main-reset-button-icon {
+            height: 10vh;
+            top: 4.5vh;
+            left: 2vw;
+            position: absolute;
+
+        }
+        #main-reset-button {
+            background: none;
+            border: none;
+        }
+        #main-text-container {
+            display: flex;
+            width: 100%;
+            height: 96vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #label-story-title {
+            font: 700 4vh "Segoe UI";
+            color: #D3DAD9;
+            text-align: center;
+            width: 50vw;
+            height: 6vh;
+        }
+        #label-story-body {
+            font: 700 2vh "Segoe UI";
+            color: #D3DAD9;
+            width: 50vw;
+            height: 10vh;
+            word-wrap: normal;
+        }
+        #main-image {
+            width: 60vw;
+            height: 60vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+<button id="main-reset-button" onclick="RefreshPage()"><img id="main-reset-button-icon" src="IMG_1614.PNG"></button>
+<div id="main-text-container">
+    <img id="main-image" src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=">
+    <h1 id="label-story-title">Story Title</h1>
+    <p id="label-story-body">Story body paragraph</p>
+</div>
+
+
+<script>
+    //elements
+    const mainImage = document.getElementById('main-image');
+    const mainTitle = document.getElementById('label-story-title');
+    const mainText = document.getElementById('label-story-body');
+
+    //front end template - made my NOAH RICHARDS
+
+    const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
+
+    document.addEventListener("DOMContentLoaded", () => {
+        RenderStory()
+    })
+    //handle searching
+
+    function RefreshPage () {
+        window.location.href = "index.html"
+    }
+
+    function GetRequestedStory () {
+        let params = new URLSearchParams(window.location.search);
+        return decodeURIComponent(params.get("title")).toString();
+    }
+
+    async function RenderStory () {
+        let content = await GetContent();
+        if (!content) {
+            alert("no stories found")
+            return;
+        }
+        content.forEach(story => {
+            if (story.title === GetRequestedStory) {
+                mainImage.src = story.image;
+                mainTitle.textContent = story.title;
+                mainText.textContent = story.text;
+            }
+        })
+    }
+
+
+    async function GetContent() {
+        const res = await fetch(BaseWorkerLink + "/get-content");
+
+        if (!res.ok) {
+            alert("no response from server");
+        }
+
+        let Content = await res.json();
+
+        return Content;
+    }
+
+
+</script>
+</body>
+</html>
