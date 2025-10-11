@@ -363,6 +363,7 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         SetDateLabel()
+        RenderHome()
     })
 
     function SetDateLabel(){
@@ -443,10 +444,21 @@
         return Day;
     }
 
+
+    const ShowcaseImage = document.getElementById("showcase-image");
+
+    async function RenderHome(){
+        let Content = await GetContent()
+
+        ShowcaseImage.src = Content[0].image;
+
+
+    }
+
+
+
     //backend send logic
     const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
-
-    //handle searching
 
     //default helpful functions
 
