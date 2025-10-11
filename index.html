@@ -448,6 +448,8 @@
     const ShowcaseWriter = document.getElementById("writer");
     const ShowcaseDate = document.getElementById("date-published");
 
+    const SidebarButtonContainer = document.getElementById("sidebar-buttons-container")
+
     async function RenderHome(){
         let Content = await GetContent()
 
@@ -457,7 +459,25 @@
         ShowcaseDate.innerHTML = `${JSON.parse(Content[0].date)[0]}/${JSON.parse(Content[0].date)[1]}/${JSON.parse(Content[0].date)[2]}`;
     }
 
+    let content2 = await GetContent();
+    content2.shift()
+    content2.forEach((item) => {
+        let div = document.createElement("div")
+        div.className = "sidebar-button"
 
+        let img = document.createElement("img")
+        img.className = "sidebar-button-image"
+        img.src = item.image;
+
+        let title = document.createElement("h1")
+        title.className = "sidebar-button-title"
+        title.innerHTML = item.title;
+
+        div.appendChild(img);
+        div.appendChild(title);
+        
+        SidebarButtonContainer.appendChild(div);
+    })
 
     //backend send logic
     const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
