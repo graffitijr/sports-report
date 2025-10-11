@@ -449,6 +449,7 @@
     const ShowcaseDate = document.getElementById("date-published");
 
     const SidebarButtonContainer = document.getElementById("sidebar-buttons-container")
+    SidebarButtonContainer.innerHTML = "";
 
     async function RenderHome() {
         let Content = await GetContent()
