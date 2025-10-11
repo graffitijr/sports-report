@@ -463,22 +463,24 @@
 
         let content2 = await GetContent();
         content2.shift()
-        content2.forEach((item) => {
-            let div = document.createElement("div")
-            div.className = "sidebar-button"
+        content2.forEach((item, index) => {
+            if (index === 0 || index === 1){
+                let div = document.createElement("div")
+                div.className = "sidebar-button"
 
-            let img = document.createElement("img")
-            img.className = "sidebar-button-image"
-            img.src = item.image;
+                let img = document.createElement("img")
+                img.className = "sidebar-button-image"
+                img.src = item.image;
 
-            let title = document.createElement("h1")
-            title.className = "sidebar-button-title"
-            title.innerHTML = item.title;
+                let title = document.createElement("h1")
+                title.className = "sidebar-button-title"
+                title.innerHTML = item.title;
 
-            div.appendChild(img);
-            div.appendChild(title);
+                div.appendChild(img);
+                div.appendChild(title);
 
-            SidebarButtonContainer.appendChild(div);
+                SidebarButtonContainer.appendChild(div);
+            }
         })
     }
 
