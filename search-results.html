@@ -387,9 +387,13 @@
         let Query = GetQueryParam(GetURL(), ["search"])
 
         Content.forEach(element => {
-            if(element.title.includes(Query.search.toLowerCase()) || element.writer.includes(Query.search.toLowerCase())){
-                FilteredContent.push(element)
+            if (
+                element.title.toLowerCase().includes(Query.search.toLowerCase()) ||
+                element.writer.toLowerCase().includes(Query.search.toLowerCase())
+            ) {
+                FilteredContent.push(element);
             }
+
         })
 
         return FilteredContent;
@@ -410,7 +414,7 @@
             img.src = element.image;
 
             let div2 = document.createElement("div");
-            div.className = "results-words-container"
+            div2.className = "results-words-container"
 
             let title = document.createElement("h1");
             title.className = "results-title";
