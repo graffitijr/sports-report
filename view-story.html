@@ -386,7 +386,7 @@
     const Body = document.getElementById("body");
 
     async function RenderStory(){
-        let story = GetQueryParam(GetURL(), ["story"])
+        let [story] = GetQueryParam(GetURL(), ["story"])
         let Content = await GetContent()
 
         Content.forEach((item) => {
