@@ -153,6 +153,9 @@
             height: 72vh;
             border-radius: 4vh;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            z-index: 9;
+
+            transition: all .2s ease;
         }
         .sidebar {
             position: absolute;
@@ -174,10 +177,9 @@
             border-radius: 4vh;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
             cursor: pointer;
-
-            transition: all .2s ease;
+            border: 1px solid #dbdadf;
         }
-        #showcase-image:hover {
+        .showcase:hover {
             transform: scale(1.02);
         }
         #title {
@@ -196,9 +198,13 @@
             font-weight: 600;
             font-size: 4vh;
             border-radius: 4vh;
-            padding: 3vh;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
             border: 1px solid #e8e6e6;
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            padding-right: 3vh;
+            padding-left: 8vw;
+            z-index: -1;
         }
         #writer {
             display: flex;
@@ -216,7 +222,11 @@
             font-weight: 400;
             font-size: 3vh;
             border-radius: 4vh;
-            padding: 3vh;
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            padding-right: 3vh;
+            padding-left: 8vw;
+            z-index: -1;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
             border: 1px solid #e8e6e6;
         }
@@ -236,7 +246,11 @@
             font-weight: 400;
             font-size: 3vh;
             border-radius: 4vh;
-            padding: 3vh;
+            padding-top: 3vh;
+            padding-bottom: 3vh;
+            padding-right: 3vh;
+            padding-left: 8vw;
+            z-index: -1;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
             border: 1px solid #e8e6e6;
         }
