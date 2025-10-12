@@ -490,6 +490,7 @@
     const ShowcaseTitle = document.getElementById("title");
     const ShowcaseWriter = document.getElementById("writer");
     const ShowcaseDate = document.getElementById("date-published");
+    const ShowcaseContainer = document.getElementById("showcase");
 
     const SidebarButtonContainer = document.getElementById("sidebar-buttons-container")
     SidebarButtonContainer.innerHTML = "";
@@ -501,6 +502,10 @@
         ShowcaseTitle.innerHTML = Content[0].title;
         ShowcaseWriter.innerHTML = Content[0].writer;
         ShowcaseDate.innerHTML = `${JSON.parse(Content[0].date)[0]}/${JSON.parse(Content[0].date)[1]}/${JSON.parse(Content[0].date)[2]}`;
+
+        ShowcaseContainer.addEventListener("click", () => {
+            window.location.href = `https://fhcsports.site/view-story?story=${encodeURIComponent(Content[0].title)}`
+        })
 
 
         let content2 = await GetContent();
