@@ -76,7 +76,7 @@
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             credentials: "include", // <-----------------------needed if cookies are involved
-            body: JSON.stringify({"title":TitleInput.value, "writer":writerInput.value, "text":TextInput.value, "image":imageInput.value, "credit":creditInput.value, "date":[currentDate.getMonth() + 1, currentDate.getDate(), currentDate.getFullYear()]}) //what gets sent to server
+            body: JSON.stringify({"title":TitleInput.value, "writer":writerInput.value, "text":TextInput.value, "image":imageInput.value, "credit":creditInput.value, "date":JSON.stringify([currentDate.getMonth() + 1, currentDate.getDate(), currentDate.getFullYear()])}) //what gets sent to server
         });
         if (!res.ok) {
             alert("no server response")
