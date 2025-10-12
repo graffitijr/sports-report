@@ -386,11 +386,11 @@
     const Body = document.getElementById("body");
 
     async function RenderStory(){
-        let [story] = GetQueryParam(GetURL(), ["story"])
+        let story = GetQueryParam(GetURL(), ["story"])
         let Content = await GetContent()
 
         Content.forEach((item) => {
-            if (item.title.toLowerCase() === story.toLowerCase()){
+            if (item.title.toLowerCase() === story[0].toLowerCase()){
                 Title.innerHTML = item.title;
                 Image.src = item.image;
                 Credit.innerHTML = item.credit;
