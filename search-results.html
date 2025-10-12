@@ -387,7 +387,7 @@
         let Query = GetQueryParam(GetURL(), ["search"])
 
         Content.forEach(element => {
-            if(element.title.includes(Query.search) || element.writer.includes(Query.search)){
+            if(element.title.includes(Query.search.toLowerCase()) || element.writer.includes(Query.search.toLowerCase())){
                 FilteredContent.push(element)
             }
         })
@@ -406,6 +406,7 @@
             div.className = "result-div"
 
             let img = document.createElement("img");
+            img.className = "results-img"
             img.src = element.image;
 
             let div2 = document.createElement("div");
