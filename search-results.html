@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+
+    <style>
+        body, html {
+            background-color: #f1f0f6;
+            overflow: hidden;
+        }
+        #header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: -3vh;
+            left: 0;
+            width: 100%;
+            height: 25vh;
+            background-color: #fdfdfd;
+            border-radius: 4vh;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+        #main-title {
+            font-family: "BBH Sans Bartle", sans-serif;
+        }
+        #nav-selection {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 80%;
+            height: 4vh;
+            bottom: 0;
+        }
+        .nav-buttons {
+            position: relative;
+            width: 8%;
+            height: 90%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-family: "Zalando Sans", sans-serif;
+            font-weight: 450;
+            font-size: 2vh;
+
+            transition: color 0.2s ease;
+        }
+        .nav-buttons::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: black;
+            z-index: -1;
+            transition: height .2s ease;
+        }
+        .nav-buttons:hover::after {
+            height: 100%;
+        }
+        .nav-buttons:hover {
+            color: #fdfdfd;
+        }
+        #search-icon {
+
+            width: 2vw;
+            cursor: pointer;
+
+            transition: transform .2s ease, visibility 1s ease;
+        }
+        #search-button {
+            position: absolute;
+            top: 18%;
+            left: 1%;
+            background: none;
+            border: none;
+        }
+        #search-icon:hover {
+            transform: scale(1.2);
+        }
+        #search-input {
+            position: absolute;
+            opacity: 0;
+            width:0;
+            height: 3vh;
+            top: 20%;
+            left: 4%;
+            color: black;
+            background: none;
+            border: 1px solid black;
+            outline: none;
+            font-family: "Zalando Sans", sans-serif;
+            font-weight: 500;
+            font-size: 2vh;
+
+            transition: width .3s ease, opacity .3s ease;
+        }
+        #search-input.active {
+            width: 12vw;
+            opacity: 1;
+        }
+        #date {
+            font-family: "BBH Sans Bogle", sans-serif;
+            font-weight: 400;
+            font-size: 3vh;
+            position: absolute;
+            top: 75%;
+            left: 2%;
+        }
+        #what-your-on {
+            font-family: "BBH Sans Bogle", sans-serif;
+            font-weight: 400;
+            font-size: 3vh;
+            position: absolute;
+            top: 75%;
+            right: 5%;
+        }
+        #sign-in {
+            font-family: "Zalando Sans", sans-serif;
+            font-weight: 600;
+            font-size: 2.5vh;
+            position: absolute;
+            top: 20%;
+            right: 2%;
+            background-color: #efeef4;
+            border: 1px solid #cfcfcf;
+            width: 8vw;
+            height: 5vh;
+            border-radius: 4vh;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            cursor: pointer;
+
+            transition: all .2s ease;
+        }
+        #sign-in:hover {
+            transform: scale(1.05);
+            color: #efeef4;
+            background-color: black;
+        }
+        #main-title-container{
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 3.5vh;
+        }
+        #separating-line {
+            height: 16vh;
+            width: .25vw;
+            background-color: black;
+            margin-left: 1vw;
+            margin-right: 1vw;
+            border-radius: 1vw;
+        }
+        #fhc {
+
+            height: 12vh;
+        }
+        .result-div {
+            display: flex;
+            background: #fdfdfd;
+            border-radius: 4vh;
+            width: 96%;
+            height: 30vh;
+            margin-bottom: 2vh;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+            transition: all .15s ease-out;
+        }
+        .result-div:hover {
+            transform: scale(1.02);
+        }
+        #main-content {
+            height: 76%;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .results-img {
+            margin-top: 2.5vh;
+            margin-left: 1.5vw;
+            border-radius: 4vh;
+            object-fit: cover;
+            width: 20vw;
+            height: 25vh;
+        }
+        .results-words-container {
+
+            width: 74%;
+            margin-left: 2vw;
+            margin-top: 2.5vh;
+            height: 25vh;
+        }
+        .results-title {
+            display: flex;
+            text-align: center;
+            font-family: "BBH Sans Bartle", sans-serif;
+            font-weight: 500;
+            height: 10vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .results-writer {
+            text-align: center;
+            font-family: "Zalando Sans", sans-serif;
+            font-size: 3vh;
+            font-weight: 550;
+        }
+        .results-date {
+            text-align: center;
+            font-family: "Zalando Sans", sans-serif;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bartle&family=BBH+Sans+Bogle&family=Zalando+Sans:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+<body>
+<div id="header">
+    <button id="sign-in" onclick="OpenSignIn()">Sign In</button>
+    <h1 id="date">Wednesday, January 1, 2025</h1>
+    <h1 id="what-your-on">Search Results</h1>
+    <div id="main-title-container">
+        <h1 id="main-title" >FHC<br> SPORTS . <br>SITE</h1>
+        <div id="separating-line"></div>
+        <img id="fhc" src="https://www.fhps.net/wp-content/uploads/2021/08/FHPS_Mascot_FHC_Large-300x155.png">
+    </div>
+    <button id="search-button"><img src="icons8-search-64.png" id="search-icon"></button>
+    <input id="search-input" type="text" placeholder="Search..">
+    <div id="nav-selection">
+        <button class="nav-buttons" id="nav-home" onclick="OpenHome()">Home</button>
+        <button class="nav-buttons" id="nav-all-stories" onclick="OpenAllStories()">All Stories</button>
+        <button class="nav-buttons" id="nav-newest" onclick="OpenNewest()">Newest</button>
+        <button class="nav-buttons" id="nav-socials" onclick="OpenSocialMedia()">Social Media</button>
+        <button class="nav-buttons" id="nav-about" onclick="OpenAbout()">About</button>
+    </div>
+</div>
+<div id="main-content">
+    <div class="result-div">
+        <img class="results-img" src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630">
+        <div class="results-words-container">
+            <h1 class="results-title">Test Result Title, Test Test 123</h1>
+            <p class="results-writer">Test Writer</p>
+            <p class="results-date">Aug 10, 2025</p>
+        </div>
+    </div>
+    <div class="result-div">
+        <img class="results-img" src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630">
+    </div>
+</div>
+<script>
+    const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
+
+    let SearchButton = document.getElementById("search-button");
+    let SearchBar = document.getElementById("search-input");
+
+    const DateLabel = document.getElementById("date");
+
+    SearchButton.addEventListener("click", () => {
+        SearchBar.classList.toggle("active");
+    })
+
+    document.addEventListener("DOMContentLoaded", () => {
+        SetDateLabel()
+
+        RenderResults()
+    })
+
+    function SetDateLabel(){
+        const currentDate = new Date();
+
+        DateLabel.innerHTML = `${GetDayWords()}, ${GetMonthWords()} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
+    }
+    function GetMonthWords(){
+        let Month = "";
+        const currentDate = new Date();
+        let MonthNum = currentDate.getMonth() + 1;
+
+        if(MonthNum === 1) {
+            Month = "January"
+        }
+        if(MonthNum === 2){
+            Month = "February"
+        }
+        if(MonthNum === 3){
+            Month = "March"
+        }
+        if(MonthNum === 4){
+            Month = "April"
+        }
+        if(MonthNum === 5){
+            Month = "May"
+        }
+        if(MonthNum === 6){
+            Month = "June"
+        }
+        if(MonthNum === 7){
+            Month = "July"
+        }
+        if(MonthNum === 8){
+            Month = "August"
+        }
+        if(MonthNum === 9){
+            Month = "September"
+        }
+        if(MonthNum === 10){
+            Month = "October"
+        }
+        if(MonthNum === 11){
+            Month = "November"
+        }
+        if(MonthNum === 12){
+            Month = "December"
+        }
+        return Month;
+    }
+    function GetDayWords(){
+        let Day = "";
+        const currentDate = new Date();
+        let DayNum = currentDate.getDay() + 1;
+        if(DayNum === 1){
+            Day = "Sunday";
+        }
+        if(DayNum === 2){
+            Day = "Monday";
+        }
+        if(DayNum === 3){
+            Day = "Tuesday";
+        }
+        if(DayNum === 4){
+            Day = "Wednesday";
+        }
+        if(DayNum === 5){
+            Day = "Thursday";
+        }
+        if(DayNum === 6){
+            Day = "Friday";
+        }
+        if(DayNum === 7){
+            Day = "Saturday";
+        }
+        return Day;
+    }
+
+
+    function OpenHome(){
+        window.location.href = "https://fhcsports.site"
+    }
+    function OpenAllStories(){
+        window.location.href = "https://fhcsports.site/all-stories"
+    }
+    function OpenNewest(){
+        window.location.href = "https://fhcsports.site/newest"
+    }
+    function OpenSocialMedia(){
+        window.location.href = "https://fhcsports.site/social-media"
+    }
+    function OpenAbout(){
+        window.location.href = "https://fhcsports.site/about"
+    }
+    function OpenSignIn(){
+        window.location.href = "https://fhcsports.site/sign-in"
+    }
+    SearchBar.addEventListener("keyup", function(event){
+        if (event.key === "Enter"){
+            OpenSearchResults()
+        }
+    })
+
+
+
+    async function GetResults(){
+        let Content = await GetContent()
+        let FilteredContent;
+        let Query = GetQueryParam(GetURL, ["search"])
+
+        Content.forEach(element => {
+            if(element.title.includes(Query.search) || element.writer.includes(Query.search)){
+                FilteredContent.push(element)
+            }
+        })
+
+        return FilteredContent;
+    }
+
+    async function RenderResults(){
+        let results = await GetResults();
+
+        let MainContainer = document.getElementById("main-content");
+        MainContainer.innerHTML = "";
+
+        results.forEach(element => {
+            let div = document.createElement("div");
+            div.className = "result-div"
+
+            let img = document.createElement("img");
+            img.src = element.image;
+
+            let div2 = document.createElement("div");
+            div.className = "results-words-container"
+
+            let title = document.createElement("h1");
+            title.className = "results-title";
+            title.innerHTML = element.title;
+
+            let writer = document.createElement("p");
+            writer.className = "results-writer";
+            writer.innerHTML = element.writer;
+
+            let date = document.createElement("p");
+            date.className = "results-date";
+            date.innerHTML = `${JSON.parse(element.date)[0]}/${JSON.parse(element.date)[1]}/${JSON.parse(element.date)[2]}`;
+
+            div2.appendChild(title);
+            div2.appendChild(writer);
+            div2.appendChild(date);
+
+            div.appendChild(img);
+            div.appendChild(div2);
+
+            MainContainer.appendChild(div);
+        })
+    }
+
+
+
+    function OpenSearchResults(){
+        let search = SearchBar.value;
+
+        window.location.href = `https://fhcsports.site/search-results?search=${encodeURIComponent(search)}`;
+    }
+
+    //backend send logic
+
+
+    //default helpful functions
+
+    function GetQueryParam(url, keys) {
+        const params = new URL(url).searchParams;
+        const result = {};
+        for (const key of keys) {
+            result[key] = decodeURIComponent(params.get(key));
+        }
+        return result;
+    }
+    function GetURL(){
+        return window.location.href
+    }
+
+    async function GetContent() { //     <-------Its a good idea to have one main get where you can build off later
+        const res = await fetch(BaseWorkerLink + "/get-content");
+        if (!res.ok) {
+            alert("no response from server");
+        }
+        return await res.json();
+    }
+
+
+
+
+</script>
+</body>
+</html>
