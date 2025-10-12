@@ -390,7 +390,7 @@
         let Content = await GetContent()
 
         Content.forEach((item) => {
-            if (item.title.toLowerCase() === story[0].toLowerCase()){
+            if (item.title.toLowerCase() === story.story.toLowerCase()){
                 Title.innerHTML = item.title;
                 Image.src = item.image;
                 Credit.innerHTML = item.credit;
