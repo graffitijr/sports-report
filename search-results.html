@@ -405,6 +405,11 @@
         let MainContainer = document.getElementById("main-content");
         MainContainer.innerHTML = "";
 
+        if (results.length === 0) {
+            MainContainer.innerHTML = "<p>No results found.</p>";
+            return;
+        }
+
         results.forEach(element => {
             let div = document.createElement("div");
             div.className = "result-div"
