@@ -509,6 +509,9 @@
             if (index === 0 || index === 1){
                 let div = document.createElement("div")
                 div.className = "sidebar-button"
+                div.addEventListener("click", () => {
+                    window.location.href = `https://fhcsports.site/view-story?story=${encodeURIComponent(item.title)}`
+                })
 
                 let img = document.createElement("img")
                 img.className = "sidebar-button-image"
