@@ -383,8 +383,8 @@
 
     async function GetResults(){
         let Content = await GetContent()
-        let FilteredContent;
-        let Query = GetQueryParam(GetURL, ["search"])
+        let FilteredContent = [];
+        let Query = GetQueryParam(GetURL(), ["search"])
 
         Content.forEach(element => {
             if(element.title.includes(Query.search) || element.writer.includes(Query.search)){
