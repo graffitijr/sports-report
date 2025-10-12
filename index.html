@@ -323,7 +323,7 @@
 
 <body>
 <div id="header">
-    <button id="sign-in">Sign In</button>
+    <button id="sign-in" onclick="OpenSignIn()">Sign In</button>
     <h1 id="date">Wednesday, January 1, 2025</h1>
     <h1 id="what-your-on">Home</h1>
     <div id="main-title-container">
@@ -334,11 +334,11 @@
     <button id="search-button"><img src="icons8-search-64.png" id="search-icon"></button>
     <input id="search-input" type="text" placeholder="Search..">
     <div id="nav-selection">
-        <button class="nav-buttons" id="nav-home">Home</button>
-        <button class="nav-buttons" id="nav-all-stories">All Stories</button>
-        <button class="nav-buttons" id="nav-newest">Newest</button>
-        <button class="nav-buttons" id="nav-socials">Social Media</button>
-        <button class="nav-buttons" id="nav-about">About</button>
+        <button class="nav-buttons" id="nav-home" onclick="OpenHome()">Home</button>
+        <button class="nav-buttons" id="nav-all-stories" onclick="OpenAllStories()">All Stories</button>
+        <button class="nav-buttons" id="nav-newest" onclick="OpenNewest()">Newest</button>
+        <button class="nav-buttons" id="nav-socials" onclick="OpenSocialMedia()">Social Media</button>
+        <button class="nav-buttons" id="nav-about" onclick="OpenAbout()">About</button>
     </div>
 </div>
 <div id="main-content">
@@ -346,7 +346,7 @@
     <div class="showcase">
         <img id="showcase-image" src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630">
         <h1 id="title">This is the test of a Title</h1>
-        <h1 id="writer">Noah Richards</h1>
+        <h1 id="writer">Test Writer</h1>
         <h1 id="date-published">Aug 10, 2025</h1>
     </div>
     <div class="sidebar">
@@ -455,6 +455,37 @@
     }
 
 
+    function OpenHome(){
+        window.location.href = "https://fhcsports.site"
+    }
+    function OpenAllStories(){
+        window.location.href = "https://fhcsports.site/all-stories"
+    }
+    function OpenNewest(){
+        window.location.href = "https://fhcsports.site/newest"
+    }
+    function OpenSocialMedia(){
+        window.location.href = "https://fhcsports.site/social-media"
+    }
+    function OpenAbout(){
+        window.location.href = "https://fhcsports.site/about"
+    }
+    function OpenSignIn(){
+        window.location.href = "https://fhcsports.site/sign-in"
+    }
+
+    SearchBar.addEventListener("keyup", function(event){
+        if (event.key === "Enter"){
+            OpenSearchResults()
+        }
+    })
+
+    function OpenSearchResults(){
+        let search = SearchBar.value;
+
+        window.location.href = `https://fhcsports.site/search-results?search=${encodeURIComponent(search)}`;
+    }
+
     const ShowcaseImage = document.getElementById("showcase-image");
     const ShowcaseTitle = document.getElementById("title");
     const ShowcaseWriter = document.getElementById("writer");
@@ -504,7 +535,7 @@
         const params = new URL(url).searchParams;
         const result = {};
         for (const key of keys) {
-            result[key] = params.get(key);
+            result[key] = decodeURIComponent(params.get(key));
         }
         return result;
     }
