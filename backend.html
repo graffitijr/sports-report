@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend</title>
+    <style>
+        body, html {
+            background-color: black;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #title {
+            width: 40vw;
+            height: 5vh;
+        }
+        #writer {
+            width: 40vw;
+            height: 5vh;
+        }
+        #text {
+            width: 60vw;
+            height: 50vh;
+        }
+        #image {
+            width: 40vw;
+            height: 5vh;
+        }
+
+    </style>
+</head>
+<body>
+    <input id="title" placeholder="Title" type="text">
+    <input id="writer" placeholder="Writer" type="text">
+    <textarea id="text" placeholder="Text"></textarea>
+    <input id="image" type="text" value="Image Link">
+    <input id="credit" type="text" value="Image Credit">
+    <button id="submit" onclick="PostContent()">Post</button>
+
+<script>
+    const BaseWorkerLink = "https://worker.fhcsports.site" //set to full base worker link, dont forget https://
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+    })
+
+    //handle searching
+
+    //default helpful functions
+
+    function GetQueryParam(url, keys) {
+        const params = new URL(url).searchParams;
+        const result = {};
+        for (const key of keys) {
+            result[key] = params.get(key);
+        }
+        return result;
+    }
+    function GetURL(){
+        return window.location.href
+    }
+
+    const TitleInput = document.getElementById("title");
+    const writerInput = document.getElementById("writer");
+    const TextInput = document.getElementById("text");
+    const creditInput = document.getElementById("credit");
+    const imageInput = document.getElementById("image");
+
+    async function PostContent() {
+        const currentDate = new Date();
+
+        let res = await fetch(BaseWorkerLink + "/post", {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            credentials: "include", // <-----------------------needed if cookies are involved
+            body: JSON.stringify({"title":TitleInput.value, "writer":writerInput.value, "text":TextInput.value, "image":imageInput.value, "credit":creditInput.value, "date":JSON.stringify([currentDate.getMonth() + 1, currentDate.getDate(), currentDate.getFullYear()])}) //what gets sent to server
+        });
+        if (!res.ok) {
+            alert("no server response")
+        }
+        let text = await res.text();
+        alert(text)
+
+        //add logic from response if needed
+    }
+</script>
+</body>
+</html>
