@@ -1,3 +1,11 @@
+/*
+  Cross-Origin-Embedder-Policy: require-corp
+  Cross-Origin-Opener-Policy: same-origin
+
 /game.wasm
   Content-Type: application/wasm
+  Content-Encoding: gzip
+
+/game.pck
+  Content-Type: application/octet-stream
   Content-Encoding: gzip
