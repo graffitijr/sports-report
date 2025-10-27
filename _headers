@@ -2,10 +2,11 @@
   Cross-Origin-Embedder-Policy: require-corp
   Cross-Origin-Opener-Policy: same-origin
 
-/game.wasm
+/football.wasm
   Content-Type: application/wasm
   Content-Encoding: gzip
 
-/game.pck
+/football.pck
   Content-Type: application/octet-stream
   Content-Encoding: gzip
+
