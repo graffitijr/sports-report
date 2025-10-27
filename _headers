@@ -1,3 +1,7 @@
-/*.wasm
+/game.wasm
   Content-Type: application/wasm
+  Content-Encoding: gzip
+
+/game.pck
+  Content-Type: application/octet-stream
   Content-Encoding: gzip
